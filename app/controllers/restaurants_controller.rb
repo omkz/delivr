@@ -3,4 +3,13 @@ class RestaurantsController < ApplicationController
     @restaurants = Restaurant.search_by_dishes(params[:query])
     render json: @restaurants
   end
+
+  def search_by_dishes_price_range
+    restaurants = Restaurant.search_by_dishes_price_range(params[:min], params[:max])
+    options = {
+      include: [:menus]
+    }
+    render json: RestaurantSerializer.new(restaurants, options)
+
+  end
 end
