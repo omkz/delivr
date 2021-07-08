@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get 'top_total_transaction'
       get 'total_by_transactions_above'
       get 'total_by_transactions_below'
+      get 'transactions'
     end
   end
 

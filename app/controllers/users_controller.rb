@@ -1,4 +1,19 @@
 class UsersController < ApplicationController
+  include ActionController::HttpAuthentication::Basic::ControllerMethods
+
+  def transactions
+    authenticate_with_http_basic do |id, password|
+      user = User.find(id)
+      if user && password == "hungry12345678"
+        @user = User.find(id)
+        @transactions = @user.purchases
+        render json: @transactions
+      else
+        render json: { error: 'Incorrect credentials' }, status: 401
+      end
+    end
+  end
+
   def top_total_transaction
     users = User.top_total_transaction(params[:start_date], params[:end_date])
     render json: users
