@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       get 'search_by_dishes_price_range'
       get 'most_popular'
       get 'transactions'
+      get 'near_by'
     end
   end
 

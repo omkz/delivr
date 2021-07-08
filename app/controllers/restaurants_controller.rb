@@ -32,4 +32,9 @@ class RestaurantsController < ApplicationController
     render json: restaurants
   end
 
+  def near_by
+    @restaurants = Restaurant.near(params[:location]).order("distance")
+    render json: @restaurants
+  end
+
 end
