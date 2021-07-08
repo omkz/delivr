@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :users, only: [] do
     collection do
       get 'top_total_transaction'
+      get 'total_by_transactions_above'
+      get 'total_by_transactions_below'
     end
   end
 
