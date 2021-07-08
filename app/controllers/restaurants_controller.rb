@@ -10,6 +10,11 @@ class RestaurantsController < ApplicationController
       include: [:menus]
     }
     render json: RestaurantSerializer.new(restaurants, options)
-
   end
+
+  def most_popular
+    restaurants= Restaurant.most_popular
+    render json: restaurants
+  end
+
 end

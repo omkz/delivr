@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     collection do
       get 'search_by_dishes'
       get 'search_by_dishes_price_range'
+      get 'most_popular'
     end
   end
 
