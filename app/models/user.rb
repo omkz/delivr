@@ -21,6 +21,9 @@ class User < ApplicationRecord
       where("purchases.date BETWEEN ? AND ?", start_date, end_date).
       having('SUM(purchases.amount) < ?', amount).
       group("users.id")
+  end
 
+  def location
+    latitude.to_s << "," << longitude.to_s
   end
 end

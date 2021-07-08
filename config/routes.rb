@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       get 'total_by_transactions_above'
       get 'total_by_transactions_below'
       get 'transactions'
+      get 'near_by'
     end
   end
 

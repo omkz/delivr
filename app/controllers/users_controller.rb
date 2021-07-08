@@ -29,4 +29,10 @@ class UsersController < ApplicationController
     render json: { "total_users": users}
   end
 
+  def near_by
+    user = User.find(params[:user_id])
+    @restaurants = Restaurant.near(user.location, 10).order("distance")
+    render json: @restaurants
+  end
+
 end
