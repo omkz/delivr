@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  apipie
   resources :restaurants, only: [] do
     collection do
       get 'search_by_dishes'
