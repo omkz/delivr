@@ -15,6 +15,7 @@ gem 'activerecord-import'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'jsonapi-serializer'
 gem 'geocoder'
+gem 'pg_search'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'

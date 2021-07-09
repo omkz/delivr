@@ -1,6 +1,14 @@
 class RestaurantsController < ApplicationController
   include ActionController::HttpAuthentication::Basic::ControllerMethods
 
+  def search
+    restaurants = Restaurant.search_by_name(params[:query])
+    options = {
+      include: [:menus]
+    }
+    render json: RestaurantSerializer.new(restaurants, options)
+  end
+
   def transactions
     authenticate_with_http_basic do |id, password|
       user = Restaurant.find(id)

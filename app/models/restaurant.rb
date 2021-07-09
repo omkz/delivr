@@ -1,9 +1,18 @@
 class Restaurant < ApplicationRecord
+  include PgSearch::Model
+
   has_many :business_hours
   has_many :menus
   has_many :purchases
+
   geocoded_by :location
   reverse_geocoded_by :latitude, :longitude
+
+  pg_search_scope   :search_by_name,
+                    :against => :name,
+                    :using => { :tsearch => { :dictionary => "english" }},
+                    :associated_against => { :menus => :name }
+
 
   def self.search_by_dishes(query)
     joins(:menus).where("menus.name ILIKE ?", "%#{query}%")

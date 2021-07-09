@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2021_07_06_052644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_trgm"
 
   create_table "business_hours", force: :cascade do |t|
     t.integer "day"
