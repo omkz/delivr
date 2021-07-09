@@ -1,24 +1,42 @@
-# README
+# Mela!
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Meal Delivery API
 
-Things you may want to cover:
 
-* Ruby version
+### Setting up the development environment
 
-* System dependencies
+- Get the code. Clone this git repository:
 
-* Configuration
+  ```bash
+  git clone git://github.com/omkz/melalie.git
+  cd melalie  
+  ```
 
-* Database creation
+- Install the required gems by running the following command in the project root directory:
 
-* Database initialization
+  ```bash
+  bundle install
+  ```
 
-* How to run the test suite
+- Create and initialize the database:
 
-* Services (job queues, cache servers, search engines, etc.)
+  ```bash
+  rails db:create
+  rails db:migrate
+  ```
+- Import data restaurants
+  ```
+  bin/rails import:restaurants
+  ```
+  
+- Import data users
+  ```
+  bin/rails import:users
+  ```
 
-* Deployment instructions
+- Start the development server:
 
-* ...
+  ```bash
+  bin/rails s
+  ```
+
