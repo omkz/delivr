@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :purchases
+  validates :balance, numericality: { greater_than_or_equal_to: 0 }
 
   def self.top_total_transaction(start_date, end_date)
     joins(:purchases).
@@ -25,5 +26,9 @@ class User < ApplicationRecord
 
   def location
     latitude.to_s << "," << longitude.to_s
+  end
+
+  def reduce_balance(amount)
+    update! balance: balance - amount
   end
 end

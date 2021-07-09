@@ -29,4 +29,8 @@ class Restaurant < ApplicationRecord
       group("purchases.restaurant_id, restaurants.name, restaurants.id")
   end
 
+  def add_balance(amount)
+    update! balance: balance + amount
+  end
+
 end
