@@ -40,3 +40,7 @@ Meal Delivery API
   bin/rails s
   ```
 
+### The API documentation
+  ```
+    http://localhost:3000/apipie/
+  ```
