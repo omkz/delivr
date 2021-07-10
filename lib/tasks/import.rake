@@ -12,7 +12,22 @@ namespace :import do
         name: row["name"],
         latitude: row["location"].split(",").first.to_f,
         longitude: row["location"].split(",").second.to_f,
-        balance: row["balance"])
+        balance: row["balance"]
+      )
+
+      if row["business_hours"]
+        ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].each_with_index do |day, idx|
+          p day = row["business_hours"].match(/#{day}.*?:\s\K(\d\d?:?\d?\d? [A|P]M) - (\d\d?:?\d?\d? [A|P]M)/i)
+          if day
+            resto.business_hours.build(
+              day: idx+1,
+              open_at: day[1],
+              close_at: day[2]
+            )
+          end
+        end
+      end
+
       row["menu"].each do |m|
         resto.menus.build(
           name: m["name"],
@@ -36,7 +51,7 @@ namespace :import do
         latitude: row["location"].split(",").first.to_f,
         longitude: row["location"].split(",").second.to_f)
       row["purchases"].each do |purchase|
-        resto = Restaurant.where(name: purchase['restaurant_name']).joins(:menus).where(menus: {name: purchase['dish']}).first
+        resto = Restaurant.where(name: purchase['restaurant_name']).joins(:menus).where(menus: { name: purchase['dish'] }).first
         dish = resto.menus.where(name: purchase['dish']).first
         user.purchases.build(
           amount: purchase["amount"],
@@ -47,6 +62,7 @@ namespace :import do
       end
       users << user
     end
+
     User.import users, recursive: true
 
   end
