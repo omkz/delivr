@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       get 'transactions'
       get 'near_by'
       get 'search'
+      get 'open_at'
     end
   end
 

@@ -33,4 +33,8 @@ class Restaurant < ApplicationRecord
     update! balance: balance + amount
   end
 
+  def self.open_at(time)
+    includes(:business_hours).where("business_hours.open_at >= ? AND business_hours.close_at <= ?", time, time).references(:business_hours)
+  end
+
 end
