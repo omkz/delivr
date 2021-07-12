@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get 'search'
       get 'open_at'
       get 'opening_hours_per_day'
+      get 'opening_hours_per_week'
     end
   end
 

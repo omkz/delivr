@@ -8,11 +8,10 @@ class Restaurant < ApplicationRecord
   geocoded_by :location
   reverse_geocoded_by :latitude, :longitude
 
-  pg_search_scope   :search_by_name,
-                    :against => :name,
-                    :using => { :tsearch => { :dictionary => "english" }},
-                    :associated_against => { :menus => :name }
-
+  pg_search_scope :search_by_name,
+                  :against => :name,
+                  :using => { :tsearch => { :dictionary => "english" } },
+                  :associated_against => { :menus => :name }
 
   def self.search_by_dishes(query)
     joins(:menus).where("menus.name ILIKE ?", "%#{query}%")
@@ -58,6 +57,22 @@ class Restaurant < ApplicationRecord
     end
 
     where(id: resto.uniq)
+  end
+
+  def self.opening_hours_per_week(x_hours, z_hours)
+    ids = find_by_sql(
+      "SELECT restaurant_id, hours_per_week
+       from (SELECT restaurant_id,
+             SUM(CASE
+                     WHEN (close_at - open_at) <= '0 hour'::interval THEN (close_at - open_at) + '24 hour'::interval
+                     ELSE close_at - open_at
+                 END) as hours_per_week
+              from business_hours
+              group by restaurant_id) business_hours
+        where hours_per_week >= '#{x_hours}' ::interval AND hours_per_week <= '#{z_hours} hour'::interval")
+      .pluck(:restaurant_id)
+
+    where(id: ids)
   end
 
 end
