@@ -20,7 +20,7 @@ namespace :import do
           p day = row["business_hours"].match(/#{day}.*?:\s\K(\d\d?:?\d?\d? [A|P]M) - (\d\d?:?\d?\d? [A|P]M)/i)
           if day
             resto.business_hours.build(
-              day: idx+1,
+              day: idx + 1,
               open_at: day[1],
               close_at: day[2]
             )

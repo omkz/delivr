@@ -65,4 +65,12 @@ class RestaurantsController < ApplicationController
     render json: @restaurants
   end
 
+  api :GET, "/restaurants/opening_hours_per_day", "List all restaurants that are open for x-z hours per"
+  param :hours_x, :number, desc: 'hours of x', required: true
+  param :hours_z, :number, desc: 'hours of z', required: true
+  def opening_hours_per_day
+    @restaurants = Restaurant.opening_hours_per_day(params[:hours_x], params[:hours_z])
+    render json: @restaurants
+  end
+
 end

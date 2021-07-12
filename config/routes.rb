@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       get 'near_by'
       get 'search'
       get 'open_at'
+      get 'opening_hours_per_day'
     end
   end
 
