@@ -44,3 +44,7 @@ Meal Delivery API
   ```
     http://localhost:3000/apipie/
   ```
+or
+  ```
+    https://melal.herokuapp.com/apipie
+  ```
