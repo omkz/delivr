@@ -4,10 +4,9 @@ class User < ApplicationRecord
 
   def self.top_total_transaction(start_date, end_date)
     joins(:purchases).
-      select("users.id AS id, users.name, sum(purchases.amount) AS total").
+      select("users.id, users.name, sum(purchases.amount) OVER ( PARTITION BY purchases.user_id) as total").
       where("purchases.date BETWEEN ? AND ?", start_date, end_date).
-      order("total desc").
-      group("users.name, users.id")
+      order("total DESC").distinct
   end
 
   def self.get_by_transactions_above(amount, start_date, end_date)
