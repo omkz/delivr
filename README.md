@@ -46,5 +46,5 @@ Meal Delivery API
   ```
 or
   ```
-    https://mela.herokuapp.com/apipie
+    https://mela-food.herokuapp.com/apipie
   ```
