@@ -24,6 +24,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :menus, only: [] do
+    collection do
+      get 'lists'
+    end
+  end
+
   resources :purchases, only: [:create, :show]
 
 end
