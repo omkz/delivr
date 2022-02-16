@@ -1,6 +1,6 @@
 # Delivr!
 
-Delivr Delivery API
+Food Delivery API
 
 
 ### Setting up the development environment
