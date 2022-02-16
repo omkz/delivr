@@ -1,5 +1,5 @@
 Apipie.configure do |config|
-  config.app_name                = "Mela!"
+  config.app_name                = "Delivr"
   config.api_base_url            = ""
   config.doc_base_url            = "/apipie"
   config.translate = false

@@ -1,6 +1,6 @@
-# Mela!
+# Delivr!
 
-Meal Delivery API
+Delivr Delivery API
 
 
 ### Setting up the development environment
@@ -8,8 +8,8 @@ Meal Delivery API
 - Get the code. Clone this git repository:
 
   ```bash
-  git clone git://github.com/omkz/mela.git
-  cd mela
+  git clone git://github.com/omkz/delivr.git
+  cd delivr
   ```
 
 - Install the required gems by running the following command in the project root directory:
@@ -46,5 +46,5 @@ Meal Delivery API
   ```
 or
   ```
-    https://mela-food.herokuapp.com/apipie
+    https://delivr.herokuapp.com/apipie
   ```
