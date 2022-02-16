@@ -46,5 +46,5 @@ Delivr Delivery API
   ```
 or
   ```
-    https://delivr.herokuapp.com/apipie
+    https://delivr-food.herokuapp.com/apipie
   ```
