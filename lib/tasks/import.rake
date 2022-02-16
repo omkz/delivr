@@ -60,7 +60,7 @@ namespace :import do
           menu: dish
         )
       end
-      users << user
+      p users << user
     end
 
     User.import users, recursive: true
