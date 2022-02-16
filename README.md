@@ -8,8 +8,8 @@ Meal Delivery API
 - Get the code. Clone this git repository:
 
   ```bash
-  git clone git://github.com/omkz/melalie.git
-  cd melalie  
+  git clone git://github.com/omkz/mela.git
+  cd mela
   ```
 
 - Install the required gems by running the following command in the project root directory:
@@ -46,5 +46,5 @@ Meal Delivery API
   ```
 or
   ```
-    https://melal.herokuapp.com/apipie
+    https://mela.herokuapp.com/apipie
   ```
