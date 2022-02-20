@@ -1,5 +1,5 @@
 class MenuSerializer
   include JSONAPI::Serializer
-  attributes :name, :price
-  belongs_to :restaurant
+  attributes :name, :price, :restaurant
+  belongs_to :restaurant, serializer: RestaurantSerializer
 end

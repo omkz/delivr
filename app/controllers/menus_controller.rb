@@ -1,6 +1,10 @@
 class MenusController < ApplicationController
     def lists
       menus = Menu.page params[:page]
-      render json: menus
+      options = {
+        include: [:restaurant]
+      }
+
+      render json: MenuSerializer.new(menus, options)
     end
 end
