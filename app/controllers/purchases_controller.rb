@@ -1,9 +1,5 @@
 class PurchasesController < ApplicationController
 
-  api :POST, '/purchases', "Process a user purchase"
-  param :user_id, :number, desc: 'id of the user', required: true
-  param :restaurant_id, :number, desc: 'id of the restaurant', required: true
-  param :menu_id, :number, desc: 'id of the dish', required: true
   def create
     user = User.find(params[:user_id])
     restaurant = Restaurant.find(params[:restaurant_id])
