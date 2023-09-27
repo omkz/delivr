@@ -3,8 +3,9 @@ require 'swagger_helper'
 RSpec.describe 'menus', type: :request do
 
   path '/menus/lists' do
-
+  
     get('lists menu') do
+      tags 'Restaurants'
       response(200, 'successful') do
 
         after do |example|

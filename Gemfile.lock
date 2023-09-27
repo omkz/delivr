@@ -64,8 +64,6 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
-    apipie-rails (0.5.18)
-      rails (>= 4.1)
     bootsnap (1.7.5)
       msgpack (~> 1.0)
     builder (3.2.4)
@@ -227,7 +225,6 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-import
-  apipie-rails
   bootsnap (>= 1.4.4)
   bullet
   byebug

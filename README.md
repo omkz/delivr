@@ -28,7 +28,7 @@ Food Delivery API
   ```
   bin/rails import:restaurants
   ```
-  
+
 - Import data users
   ```
   bin/rails import:users
@@ -41,10 +41,7 @@ Food Delivery API
   ```
 
 ### The API documentation
+
   ```
-    http://localhost:3000/apipie/
-  ```
-or
-  ```
-    https://delivr-food.herokuapp.com/apipie
+    http://localhost:3000/api-docs/
   ```

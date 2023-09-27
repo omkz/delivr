@@ -7,9 +7,329 @@ paths:
   "/menus/lists":
     get:
       summary: lists menu
+      tags:
+      - Restaurants
       responses:
         '200':
           description: successful
+  "/purchases":
+    post:
+      summary: Creates a purchase
+      tags:
+      - Purchases
+      - Users
+      parameters: []
+      responses:
+        '201':
+          description: purchase created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: number
+                  enum:
+                  - '1'
+                restaurant_id:
+                  type: number
+                  enum:
+                  - '1'
+                menu_id:
+                  type: number
+                  enum:
+                  - '1'
+              required:
+              - user_id
+              - restaurant_id
+              - menu_id
+  "/restaurants/search":
+    get:
+      summary: Searching for restaurants or dishes by name
+      tags:
+      - Restaurants
+      parameters:
+      - name: query
+        in: query
+        schema:
+          type: object
+          properties:
+            query:
+              type: string
+              enum:
+              - hungry
+          required:
+          - query
+      responses:
+        '201':
+          description: restaurant created
+        '422':
+          description: invalid request
+  "/restaurants/search_by_dishes":
+    get:
+      summary: Search for restaurants that has a dish matching search term
+      tags:
+      - Restaurants
+      parameters:
+      - name: query
+        in: query
+        schema:
+          type: string
+      responses:
+        '404':
+          description: dish not found
+  "/restaurants/search_by_dishes_price_range":
+    get:
+      summary: List all restaurants that have x-z number of dishes within a price
+        range
+      tags:
+      - Restaurants
+      parameters:
+      - name: price
+        in: query
+        schema:
+          type: object
+          properties:
+            min:
+              type: number
+            max:
+              type: number
+          required:
+          - min
+          - max
+      responses:
+        '404':
+          description: dish not found
+  "/restaurants/near_by":
+    get:
+      summary: Get restaurant by any location
+      tags:
+      - Restaurants
+      parameters:
+      - name: location
+        in: query
+        schema:
+          type: object
+          properties:
+            location:
+              type: string
+              enum:
+              - bali
+          required:
+          - location
+      responses:
+        '404':
+          description: restaurants not found
+  "/restaurants/opening_hours_per_day":
+    get:
+      summary: List all restaurants that are open for x-z hours per day"
+      tags:
+      - Restaurants
+      parameters:
+      - name: hours
+        in: query
+        schema:
+          type: object
+          properties:
+            hours_x:
+              type: number
+            hours_z:
+              type: number
+          required:
+          - hours_x
+          - hours_z
+      responses:
+        '404':
+          description: restaurants not found
+  "/restaurants/opening_hours_per_week":
+    get:
+      summary: List all restaurants that are open for x-z hours per week
+      tags:
+      - Restaurants
+      parameters:
+      - name: hours
+        in: query
+        schema:
+          type: object
+          properties:
+            hours_x:
+              type: number
+            hours_z:
+              type: number
+          required:
+          - x_hours
+          - z_hours
+      responses:
+        '404':
+          description: restaurants not found
+  "/restaurants/open_at":
+    get:
+      summary: List all restaurants that are open at a certain time
+      tags:
+      - Restaurants
+      parameters:
+      - name: hours
+        in: query
+        schema:
+          type: object
+          properties:
+            time:
+              type: string
+              enum:
+              - '09:00'
+          required:
+          - open_at
+      responses:
+        '404':
+          description: restaurants not found
+  "/restaurants/{id}/transactions":
+    get:
+      summary: List all transactions belonging to a restaurant
+      tags:
+      - Restaurants
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '404':
+          description: transactions not found
+        '406':
+          description: unsupported accept header
+  "/users/{id}/transactions":
+    get:
+      summary: List all transactions belonging to a user
+      tags:
+      - Users
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '404':
+          description: transactions not found
+        '406':
+          description: unsupported accept header
+  "/users/top_total_transaction":
+    get:
+      summary: The top x users by total transaction amount within a date range
+      tags:
+      - Users
+      parameters:
+      - name: query
+        in: query
+        schema:
+          type: object
+          properties:
+            start_date:
+              type: string
+              enum:
+              - '2019-08-26'
+            end_date:
+              type: string
+              enum:
+              - '2019-08-30'
+          required:
+          - start_date
+          - end_date
+      responses:
+        '404':
+          description: transactions not found
+        '406':
+          description: unsupported accept header
+  "/users/total_by_transactions_above":
+    get:
+      summary: Total number of users who made transactions above $v within a date
+        range
+      tags:
+      - Users
+      parameters:
+      - name: query
+        in: query
+        schema:
+          type: object
+          properties:
+            start_date:
+              type: string
+              enum:
+              - '2019-08-26'
+            end_date:
+              type: string
+              enum:
+              - '2019-08-30'
+            amount:
+              type: number
+              enum:
+              - '10'
+          required:
+          - amount
+          - start_date
+          - end_date
+      responses:
+        '404':
+          description: transactions not found
+        '406':
+          description: unsupported accept header
+  "/users/total_by_transactions_below":
+    get:
+      summary: Total number of users who made transactions below $v within a date
+        range
+      tags:
+      - Users
+      parameters:
+      - name: query
+        in: query
+        schema:
+          type: object
+          properties:
+            start_date:
+              type: string
+              enum:
+              - '2019-08-26'
+            end_date:
+              type: string
+              enum:
+              - '2019-08-30'
+            amount:
+              type: number
+              enum:
+              - '1000'
+          required:
+          - amount
+          - start_date
+          - end_date
+      responses:
+        '404':
+          description: transactions not found
+        '406':
+          description: unsupported accept header
+  "/users/near_by":
+    get:
+      summary: List all restaurants within the vicinity of the user’s location
+      tags:
+      - Users
+      parameters:
+      - name: user_id
+        in: query
+        schema:
+          type: object
+          properties:
+            user_id:
+              type: number
+              enum:
+              - '1'
+          required:
+          - user_id
+      responses:
+        '404':
+          description: restaurants not found
 servers:
 - url: http://{defaultHost}
   variables:
